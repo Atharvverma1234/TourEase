@@ -19,7 +19,8 @@ const app = express();
 // }));
 const allowedOrigins = [
   "https://tour-ease-joh5.vercel.app",
-  "http://localhost:5173"
+  "http://localhost:5173",
+  "https://tourease-2.onrender.com",
 ];
 
 app.use(cors({
@@ -33,6 +34,7 @@ app.use(cors({
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
+
 app.options("*", cors());
 
 app.use(express.json());
