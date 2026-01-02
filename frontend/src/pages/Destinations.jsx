@@ -75,18 +75,25 @@ function FilterButton({ label, active }) {
     );
 }
 
+
 function DestinationCard({ destination, isFavorite, onToggleFavorite }) {
     return (
         <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all overflow-hidden group cursor-pointer">
-            <div className={`${destination.image} h-48 relative overflow-hidden`}>
+            
+            {/* Image */}
+            <div
+                className="h-48 relative overflow-hidden bg-cover bg-center"
+                style={{ backgroundImage: `url(${destination.image})` }}
+            >
                 <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition" />
                 <button
                     onClick={onToggleFavorite}
                     className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition z-10"
                 >
                     <Heart
-                        className={`w-6 h-6 transition ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
-                            }`}
+                        className={`w-6 h-6 transition ${
+                            isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                        }`}
                     />
                 </button>
             </div>
@@ -122,3 +129,54 @@ function DestinationCard({ destination, isFavorite, onToggleFavorite }) {
         </div>
     );
 }
+
+
+
+
+// function DestinationCard({ destination, isFavorite, onToggleFavorite }) {
+//     return (
+//         <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all overflow-hidden group cursor-pointer">
+//             <div className={`${destination.image} h-48 relative overflow-hidden`}>
+//                 <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition" />
+//                 <button
+//                     onClick={onToggleFavorite}
+//                     className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition z-10"
+//                 >
+//                     <Heart
+//                         className={`w-6 h-6 transition ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
+//                             }`}
+//                     />
+//                 </button>
+//             </div>
+
+//             <div className="p-6">
+//                 <h3 className="font-bold text-xl mb-2">{destination.name}</h3>
+
+//                 <div className="flex items-center mb-4">
+//                     <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+//                     <span className="ml-2 font-semibold">{destination.rating}</span>
+//                     <span className="text-gray-500 text-sm ml-2">({destination.reviews})</span>
+//                 </div>
+
+//                 <div className="space-y-2 text-sm text-gray-600 mb-4">
+//                     <div className="flex items-center">
+//                         <MapPin className="w-4 h-4 mr-2 text-teal-600" />
+//                         Best for: {destination.bestFor}
+//                     </div>
+//                     <div className="flex items-center">
+//                         <Clock className="w-4 h-4 mr-2 text-teal-600" />
+//                         Best season: {destination.season}
+//                     </div>
+//                     <div className="flex items-center">
+//                         <TrendingUp className="w-4 h-4 mr-2 text-teal-600" />
+//                         Budget: {destination.cost}
+//                     </div>
+//                 </div>
+
+//                 <button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-lg font-semibold transition">
+//                     Explore
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// }
