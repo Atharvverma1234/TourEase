@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, Star, Heart, Clock, TrendingUp, HeartOff } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // ✅ ADD THIS
 import { useFavorites } from "../hooks/useFavorites";
 import { destinations } from "../utils/destinationsData";
 import { Link } from "react-router-dom";
@@ -7,7 +8,6 @@ import { Link } from "react-router-dom";
 export default function AddFavorite() {
   const { favoriteIds, toggleFavorite, isFavorite } = useFavorites();
 
-  // Filter destinations to show only favorites
   const favoriteDestinations = destinations.filter((destination) =>
     favoriteIds.includes(destination.id)
   );
@@ -65,15 +65,23 @@ export default function AddFavorite() {
 }
 
 function DestinationCard({ destination, isFavorite, onToggleFavorite }) {
+  const navigate = useNavigate(); // ✅ ADD THIS
+
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm dark:shadow-lg hover:shadow-xl dark:hover:shadow-xl transition-all overflow-hidden group cursor-pointer border border-transparent dark:border-gray-800">
+    <div
+      onClick={() => navigate(`/destinations/${destination.id}`)} // ✅ ADD THIS
+      className="bg-white dark:bg-gray-900 rounded-xl shadow-sm dark:shadow-lg hover:shadow-xl dark:hover:shadow-xl transition-all overflow-hidden group cursor-pointer border border-transparent dark:border-gray-800"
+    >
       <div
         className="h-48 relative overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${destination.image})` }}
       >
         <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 dark:opacity-40 dark:group-hover:opacity-50 transition" />
         <button
-          onClick={onToggleFavorite}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite();
+          }}
           className="absolute top-4 right-4 bg-white dark:bg-gray-800 rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition z-10"
         >
           <Heart
@@ -116,7 +124,13 @@ function DestinationCard({ destination, isFavorite, onToggleFavorite }) {
           </div>
         </div>
 
-        <button className="w-full bg-teal-500 hover:bg-teal-600 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white py-2 rounded-lg font-semibold transition">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/destinations/${destination.id}`);
+          }}
+          className="w-full bg-teal-500 hover:bg-teal-600 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white py-2 rounded-lg font-semibold transition"
+        >
           Explore
         </button>
       </div>
