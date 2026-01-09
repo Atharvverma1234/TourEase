@@ -70,3 +70,50 @@ To get the project running in under 2 minutes:
    ```bash
    git clone [https://github.com/Suhani1234-5/TourEase.git](https://github.com/Suhani1234-5/TourEase.git)
    cd TourEase
+   ```
+2. **Install & Run**
+
+> [!NOTE]  
+> For the full environment variable setup and detailed configuration, please see the **[Detailed Installation Guide](./INSTALLATION.md)**.
+
+* **Terminal 1: Backend**
+```bash
+cd backend
+npm install
+npm start
+```
+* **Terminal 2: Frontend**
+```
+cd frontend
+npm install
+npm start
+```
+
+3. **Access the App:** Once both servers are running, open your browser and navigate to: `http://localhost:3000`
+---
+
+## 🤝 Contributing
+
+Joining us for **SWOC'26**? We love PRs! 🚀
+
+* Please read our **[Contributing Guidelines](CONTRIBUTING.md)** to get started.
+* Check out the **Project Roadmap** in our issues for open tasks.
+
+---
+
+## 👩‍💻 Author & Support
+
+**Suhani** — [@Suhani1234-5](https://github.com/Suhani1234-5)
+
+* 📢 **Questions?** Open a [GitHub Discussion](https://github.com/Suhani1234-5/TourEase/discussions)
+* 💼 **Connect:** [LinkedIn](https://www.linkedin.com/in/suhani-garg-88a736318/)
+
+---
+
+<div align="center">
+
+**Made with ❤️ by travelers, for travelers**
+
+[⬆ Back to Top](#-tourease)
+
+</div>
