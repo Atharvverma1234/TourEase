@@ -1,89 +1,41 @@
-# Contributing to TourEase
+# 🤝 Contributing to TourEase
 
-We welcome contributions from everyone! Follow these guidelines to help make development smooth and consistent.
+First off, thank you for considering contributing to TourEase! It's people like you who make this tool better for travelers everywhere.
 
-## 1. How to Clone the Repository
+## 🌟 SWOC'26 Participants
+Welcome! Please ensure you are assigned to an issue before opening a Pull Request. Always link your PR to the issue number (e.g., `Closes #12`).
 
-git clone https://github.com/<your-username>/TourEase.git
-cd TourEase
+---
 
+## 🛠️ How to Contribute
 
-## 2. Branch Naming Rules
+1.  **Fork** the repository.
+2.  **Clone** your fork: `git clone https://github.com/your-username/TourEase.git`
+3.  **Create a Branch**: `git checkout -b feature/YourFeatureName`
+4.  **Commit Changes**: Use descriptive messages like `feat: add voice support to assistant`.
+5.  **Push**: `git push origin feature/YourFeatureName`
+6.  **Open a Pull Request**: Provide a clear description of what you solved.
 
-* Feature branches: `feature/short-description`
-* Bugfix branches: `bugfix/short-description`
-* Hotfix branches: `hotfix/short-description`
-* Use lowercase and hyphens for branch names.
+---
 
-## 3. Commit Message Style
+## 🎯 Areas to Help With
+- 🎨 **UI/UX**: Improving accessibility and responsiveness.
+- 🤖 **AI/ML**: Optimizing itinerary generation logic.
+- 🌐 **Localization**: Adding support for more regional languages.
+- 🧪 **Testing**: Adding unit tests for backend routes.
+- 📝 **Docs**: Improving API documentation.
 
-* Feature: `feat: add short description`
-* Bug fix: `fix: short description`
-* Documentation: `docs: update short description`
-* Chores: `chore: description`
-* Use present tense and be concise.
+---
 
-## 4. How to Run the Project
+## 📜 Code of Conduct
+- Be respectful and constructive.
+- Follow the existing code style (linting).
+- Keep discussions focused on the project.
 
-* Install dependencies:
+---
 
-
-npm install
-
-
-* Start the development server:
-
-
-npm start
-
-
-* Open the project in your browser at `http://localhost:3000` (or the configured port).
-
-## 5. Code Formatting & Standards
-
-* Follow existing code style.
-* Use 2 spaces for indentation.
-* Write clean and readable code.
-* Comment complex code sections for clarity.
-
-## 6. Pull Request Guidelines
-
-1. Fork the repository and create a branch.
-2. Make your changes with proper commit messages.
-3. Push your branch to your fork.
-4. Open a Pull Request to the main repository with:
-
-   * Clear title
-   * Detailed description
-   * Screenshots if applicable
-5. Link related issues (if any) using `#issue-number`.
-6. Ensure all tests pass before submitting.
-
-## 7. Reporting Issues
-
-* Check existing issues before creating a new one.
-* Provide clear steps to reproduce the problem.
-* Include screenshots, logs, or error messages if available.
-
-## 8. Testing Your Changes
-
-* Test your changes locally before committing.
-* Write new tests for any added features or bug fixes if applicable.
-
-## 9. Communication
-
-* Use GitHub Issues for discussions or questions.
-* Be respectful and professional in all interactions.
-* Keep discussions focused on project improvements.
-
-## 10. PR Checklist
-
-* [ ] Code builds successfully
-* [ ] Code follows formatting rules
-* [ ] Commits are descriptive
-* [ ] No sensitive information is included
-* [ ] Documentation updated if needed
-* [ ] Tests added or updated for new functionality
-
-
-
+## ✅ Contribution Checklist
+- [ ] My code follows the project style.
+- [ ] I have updated the documentation (if applicable).
+- [ ] My PR title is descriptive.
+- [ ] I have tested the changes locally.
