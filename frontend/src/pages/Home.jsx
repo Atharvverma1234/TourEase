@@ -383,30 +383,30 @@ export default function Home() {
                 <ul className="space-y-4">
                   <li className="group flex items-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-orange-500 mr-3 opacity-70 group-hover:opacity-100 transition-all"></span>
-                    <a
-                      href="#features"
+                    <Link
+                      to="/features"
                       className="text-sm group-hover:text-teal-400 transition-all"
                     >
                       Features
-                    </a>
+                    </Link>
                   </li>
                   <li className="group flex items-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-orange-500 mr-3 opacity-70 group-hover:opacity-100 transition-all"></span>
-                    <a
-                      href="#process"
+                    <Link
+                      to="/destinations"
                       className="text-sm group-hover:text-teal-400 transition-all"
                     >
-                      Process
-                    </a>
+                      Destinations
+                    </Link>
                   </li>
                   <li className="group flex items-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-orange-500 mr-3 opacity-70 group-hover:opacity-100 transition-all"></span>
-                    <a
-                      href="#reviews"
+                    <Link
+                      to="/plan-trip"
                       className="text-sm group-hover:text-teal-400 transition-all"
                     >
-                      Reviews
-                    </a>
+                      Plan Trip
+                    </Link>
                   </li>
                 </ul>
               </div>
