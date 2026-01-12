@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { api } from "../services/api";
 import { API_BASE_URL } from "../config/auth";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -92,7 +93,14 @@ export default function Login() {
 
   return (
     <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-950 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl dark:shadow-2xl border border-transparent dark:border-gray-800">
+      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl dark:shadow-2xl border border-transparent dark:border-gray-800 relative">
+
+        {/* BACK TO HOME BUTTON */}
+        <Link to="/" className="absolute top-10 right-8 flex items-center justify-center gap-1 text-sm font-semibold text-white px-2 py-2 rounded-lg  bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-indigo-600 dark:to-purple-600 hover:from-teal-600 hover:to-cyan-700  shadow hover:shadow-lg dark:hover:from-indigo-500 dark:hover:to-purple-500 ">
+        <ArrowLeft size={18} className="sm:inline hidden "/>
+        <span>Back to Home</span>
+        </Link>
+
         {/* LOGO */}
         <Link to="/" className="block mb-6">
           <h1 className="text-3xl font-bold text-teal-600 dark:text-indigo-400">
