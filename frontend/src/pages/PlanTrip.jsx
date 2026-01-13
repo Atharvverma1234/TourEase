@@ -39,6 +39,12 @@ export default function PlanTrip() {
     console.log("Planned Trip Data:", formData);
 
     alert("Trip preferences saved! (AI itinerary coming soon)");
+    setFormData({
+      destination: "",
+      duration: "",
+      budget: "",
+      interests: [],
+    })
   }
 
   return (
@@ -113,11 +119,10 @@ export default function PlanTrip() {
                   key={interest}
                   type="button"
                   onClick={() => toggleInterest(interest)}
-                  className={`px-4 py-2 rounded-full border transition ${
-                    formData.interests.includes(interest)
+                  className={`px-4 py-2 rounded-full border transition ${formData.interests.includes(interest)
                       ? "bg-teal-500 text-white border-teal-500"
                       : "bg-white dark:bg-gray-950 border-gray-300 dark:border-gray-700"
-                  }`}
+                    }`}
                 >
                   {interest}
                 </button>
