@@ -5,7 +5,10 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const contactRoutes = require('./routes/contactRoutes');
-const tripRouter = require('./routes/tripRoutes')
+const tripRouter = require('./routes/tripRoutes');
+const itineraryRoutes = require('./routes/itineraryRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+const weatherRoutes = require('./routes/weatherRoutes');
 
 // Connect to MongoDB
 connectDB()
@@ -33,7 +36,7 @@ app.use(cors({
     }
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 }));
 
 app.use(passport.initialize());
@@ -43,7 +46,10 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
-app.use('/api/trip',tripRouter)
+app.use('/api/trip', tripRouter);
+app.use('/api/itinerary', itineraryRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/weather', weatherRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {

@@ -42,5 +42,82 @@ export const api = {
       body: credentials,
     });
   },
+
+  // Itinerary endpoints
+  async saveItinerary(itineraryData) {
+    return this.request('/itinerary/save', {
+      method: 'POST',
+      body: itineraryData,
+    });
+  },
+
+  async analyzeItinerary(itineraryId) {
+    return this.request('/itinerary/analyze', {
+      method: 'POST',
+      body: { itineraryId },
+    });
+  },
+
+  async getItinerary(id) {
+    return this.request(`/itinerary/${id}`);
+  },
+
+  async getSuggestions(itineraryId, status = null) {
+    const query = status ? `?status=${status}` : '';
+    return this.request(`/itinerary/${itineraryId}/suggestions${query}`);
+  },
+
+  async applySuggestion(itineraryId, suggestionId, modifiedPlan = null) {
+    return this.request(`/itinerary/${itineraryId}/apply`, {
+      method: 'PATCH',
+      body: { suggestionId, modifiedPlan },
+    });
+  },
+
+  async rejectSuggestion(itineraryId, suggestionId, feedback = '') {
+    return this.request(`/itinerary/${itineraryId}/reject`, {
+      method: 'PATCH',
+      body: { suggestionId, feedback },
+    });
+  },
+
+  // Event endpoints
+  async getNearbyEvents(location, startDate, endDate, radius = 25) {
+    const params = new URLSearchParams({
+      location,
+      startDate,
+      endDate,
+      radius: radius.toString()
+    });
+    return this.request(`/events/nearby?${params}`);
+  },
+
+  async getEventsByCategory(location, category, startDate, endDate) {
+    const params = new URLSearchParams({
+      location,
+      startDate,
+      endDate
+    });
+    return this.request(`/events/category/${category}?${params}`);
+  },
+
+  // Weather endpoints
+  async getWeatherForecast(location, startDate, endDate) {
+    const params = new URLSearchParams({
+      location,
+      startDate,
+      endDate
+    });
+    return this.request(`/weather/forecast?${params}`);
+  },
+
+  async getWeatherDisruptions(location, startDate, endDate) {
+    const params = new URLSearchParams({
+      location,
+      startDate,
+      endDate
+    });
+    return this.request(`/weather/disruptions?${params}`);
+  },
 };
 

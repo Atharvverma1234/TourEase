@@ -176,7 +176,7 @@ export default function TripPlanner() {
   const handleGenerate = async () => {
     setIsGenerating(true);
     setError('');
-    
+
     try {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
@@ -283,16 +283,16 @@ export default function TripPlanner() {
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-orange-500/20 blur-[120px] rounded-full"></div>
           </div>
-          
+
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center z-10">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full mb-6">
               <CheckCircle className="w-10 h-10 text-orange-300" />
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl font-black mb-4 leading-[1.1] tracking-tighter">
               Your Itinerary is Ready!
             </h1>
-            
+
             <p className="text-lg opacity-90 max-w-2xl mx-auto font-medium">
               Here's your personalized travel plan for {formData.destination}
             </p>
@@ -308,20 +308,20 @@ export default function TripPlanner() {
               <MapPin className="w-6 h-6 mr-3 text-teal-500" />
               Trip Summary
             </h2>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
                 <p className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold mb-2">Destination</p>
                 <p className="text-lg font-bold text-gray-900 dark:text-white">{formData.destination}</p>
               </div>
-              
+
               <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
                 <p className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold mb-2">Duration</p>
                 <p className="text-lg font-bold text-gray-900 dark:text-white">
                   {formData.startDate} to {formData.endDate}
                 </p>
               </div>
-              
+
               <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
                 <p className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold mb-2">Travelers</p>
                 <p className="text-lg font-bold text-gray-900 dark:text-white">
@@ -395,20 +395,35 @@ export default function TripPlanner() {
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 justify-center">
             <button
+              onClick={() => {
+                // Store trip data in sessionStorage and navigate
+                sessionStorage.setItem('currentTrip', JSON.stringify({
+                  ...formData,
+                  plan: generatedPlan
+                }));
+                window.location.href = '/dynamic-planner';
+              }}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-500/30 active:scale-95 inline-flex items-center"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              Enable Dynamic Monitoring
+            </button>
+
+            <button
               onClick={handleStartOver}
               className="px-8 py-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-xl font-bold transition-all active:scale-95 inline-flex items-center"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Plan Another Trip
             </button>
-            
+
             <button
               onClick={() => window.print()}
               className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-bold transition-all shadow-lg shadow-teal-500/30 active:scale-95"
             >
               Print Itinerary
             </button>
-            
+
             <button
               onClick={() => {
                 navigator.clipboard.writeText(generatedPlan);
@@ -431,7 +446,7 @@ export default function TripPlanner() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-orange-500/20 blur-[120px] rounded-full"></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center z-10">
           <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 backdrop-blur-xl px-4 py-1.5 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-orange-300" />
@@ -445,7 +460,7 @@ export default function TripPlanner() {
             <br />
             <span className="text-orange-300">Adventure</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-8 font-medium">
             Tell us your dream destination and let our AI create a personalized itinerary just for you
           </p>
@@ -481,23 +496,20 @@ export default function TripPlanner() {
             ].map((s, idx) => (
               <React.Fragment key={s.num}>
                 <div className="flex flex-col items-center">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all ${
-                    step >= s.num 
-                      ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/40' 
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all ${step >= s.num
+                      ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/40'
                       : 'bg-gray-200 dark:bg-gray-800 text-gray-400'
-                  }`}>
+                    }`}>
                     {s.num}
                   </div>
-                  <span className={`text-sm mt-2 font-semibold ${
-                    step >= s.num ? 'text-teal-600 dark:text-teal-400' : 'text-gray-400'
-                  }`}>
+                  <span className={`text-sm mt-2 font-semibold ${step >= s.num ? 'text-teal-600 dark:text-teal-400' : 'text-gray-400'
+                    }`}>
                     {s.label}
                   </span>
                 </div>
                 {idx < 3 && (
-                  <div className={`flex-1 h-1 mx-4 rounded transition-all ${
-                    step > s.num ? 'bg-teal-500' : 'bg-gray-200 dark:bg-gray-800'
-                  }`} />
+                  <div className={`flex-1 h-1 mx-4 rounded transition-all ${step > s.num ? 'bg-teal-500' : 'bg-gray-200 dark:bg-gray-800'
+                    }`} />
                 )}
               </React.Fragment>
             ))}
@@ -528,7 +540,7 @@ export default function TripPlanner() {
                 <input
                   type="text"
                   value={formData.destination}
-                  onChange={(e) => setFormData({...formData, destination: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
                   placeholder="e.g., Paris, Tokyo, Bali..."
                   className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 text-lg text-gray-900 dark:text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none"
                 />
@@ -543,7 +555,7 @@ export default function TripPlanner() {
                   <input
                     type="date"
                     value={formData.startDate}
-                    onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 text-gray-900 dark:text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none"
                   />
                 </div>
@@ -556,7 +568,7 @@ export default function TripPlanner() {
                   <input
                     type="date"
                     value={formData.endDate}
-                    onChange={(e) => setFormData({...formData, endDate: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-6 py-4 text-gray-900 dark:text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   />
                 </div>
@@ -583,7 +595,7 @@ export default function TripPlanner() {
                 </label>
                 <div className="flex items-center space-x-4">
                   <button
-                    onClick={() => setFormData({...formData, travelers: Math.max(1, formData.travelers - 1)})}
+                    onClick={() => setFormData({ ...formData, travelers: Math.max(1, formData.travelers - 1) })}
                     className="w-12 h-12 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-bold text-xl transition-all active:scale-95"
                   >
                     −
@@ -597,7 +609,7 @@ export default function TripPlanner() {
                     </p>
                   </div>
                   <button
-                    onClick={() => setFormData({...formData, travelers: formData.travelers + 1})}
+                    onClick={() => setFormData({ ...formData, travelers: formData.travelers + 1 })}
                     className="w-12 h-12 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-bold text-xl transition-all active:scale-95"
                   >
                     +
@@ -614,12 +626,11 @@ export default function TripPlanner() {
                   {['budget', 'moderate', 'luxury'].map((b) => (
                     <button
                       key={b}
-                      onClick={() => setFormData({...formData, budget: b})}
-                      className={`py-4 px-6 rounded-xl font-bold transition-all ${
-                        formData.budget === b
+                      onClick={() => setFormData({ ...formData, budget: b })}
+                      className={`py-4 px-6 rounded-xl font-bold transition-all ${formData.budget === b
                           ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/40'
                           : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                      }`}
+                        }`}
                     >
                       {b.charAt(0).toUpperCase() + b.slice(1)}
                     </button>
@@ -636,12 +647,11 @@ export default function TripPlanner() {
                   {['hotel', 'hostel', 'airbnb', 'resort'].map((acc) => (
                     <button
                       key={acc}
-                      onClick={() => setFormData({...formData, accommodation: acc})}
-                      className={`py-3 px-4 rounded-xl font-semibold transition-all text-sm ${
-                        formData.accommodation === acc
+                      onClick={() => setFormData({ ...formData, accommodation: acc })}
+                      className={`py-3 px-4 rounded-xl font-semibold transition-all text-sm ${formData.accommodation === acc
                           ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/40'
                           : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                      }`}
+                        }`}
                     >
                       {acc.charAt(0).toUpperCase() + acc.slice(1)}
                     </button>
@@ -667,27 +677,24 @@ export default function TripPlanner() {
                 {interests.map((interest) => {
                   const Icon = interest.icon;
                   const isSelected = formData.interests.includes(interest.id);
-                  
+
                   return (
                     <button
                       key={interest.id}
                       onClick={() => toggleInterest(interest.id)}
-                      className={`bg-white dark:bg-gray-900 p-8 rounded-2xl border-2 transition-all hover:scale-105 ${
-                        isSelected
+                      className={`bg-white dark:bg-gray-900 p-8 rounded-2xl border-2 transition-all hover:scale-105 ${isSelected
                           ? 'border-teal-500 shadow-xl shadow-teal-500/20'
                           : 'border-gray-200 dark:border-gray-800 hover:border-teal-300'
-                      }`}
+                        }`}
                     >
-                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto transition-all ${
-                        isSelected
+                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto transition-all ${isSelected
                           ? 'bg-teal-500 text-white'
                           : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                      }`}>
+                        }`}>
                         <Icon className="w-8 h-8" />
                       </div>
-                      <h3 className={`font-bold text-lg ${
-                        isSelected ? 'text-teal-600 dark:text-teal-400' : 'text-gray-900 dark:text-white'
-                      }`}>
+                      <h3 className={`font-bold text-lg ${isSelected ? 'text-teal-600 dark:text-teal-400' : 'text-gray-900 dark:text-white'
+                        }`}>
                         {interest.label}
                       </h3>
                     </button>
@@ -736,7 +743,7 @@ export default function TripPlanner() {
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   Our AI will create a personalized travel plan in seconds
                 </p>
-                
+
                 {error && (
                   <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-center justify-between">
                     <p className="text-red-600 dark:text-red-400 text-sm font-semibold">{error}</p>
@@ -745,15 +752,14 @@ export default function TripPlanner() {
                     </button>
                   </div>
                 )}
-                
+
                 <button
                   onClick={handleGenerate}
                   disabled={isGenerating}
-                  className={`px-12 py-4 rounded-xl font-bold text-lg transition-all shadow-lg inline-flex items-center ${
-                    isGenerating 
-                      ? 'bg-gray-400 cursor-not-allowed' 
+                  className={`px-12 py-4 rounded-xl font-bold text-lg transition-all shadow-lg inline-flex items-center ${isGenerating
+                      ? 'bg-gray-400 cursor-not-allowed'
                       : 'bg-orange-500 hover:bg-orange-600 active:scale-95 shadow-orange-500/30'
-                  } text-white`}
+                    } text-white`}
                 >
                   {isGenerating ? (
                     <>
@@ -784,7 +790,7 @@ export default function TripPlanner() {
                 Previous
               </button>
             )}
-            
+
             {step < 4 && (
               <button
                 onClick={() => setStep(step + 1)}
@@ -804,7 +810,7 @@ export default function TripPlanner() {
           <h2 className="text-3xl md:text-4xl font-black text-center mb-12">
             Why Choose Our AI Trip Planner?
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 text-center">
               <div className="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4">
@@ -815,7 +821,7 @@ export default function TripPlanner() {
                 Advanced AI creates personalized itineraries based on your preferences and budget
               </p>
             </div>
-            
+
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 text-center">
               <div className="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-8 h-8 text-white" />
@@ -825,7 +831,7 @@ export default function TripPlanner() {
                 Get a complete travel plan in minutes instead of hours of research
               </p>
             </div>
-            
+
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 text-center">
               <div className="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Star className="w-8 h-8 text-white" />

@@ -26,6 +26,17 @@ TourEase is an open-source intelligent travel assistant designed to help tourist
 ## ✨ Features
 We’ve packed TourEase with features to make travel personalized and safe. 
 <details>
+<summary><b>🎯 Dynamic Itinerary Adjustment (NEW!)</b> (Click to expand)</summary>
+
+* **Real-Time Event Detection:** Automatically discovers festivals, concerts, and cultural events during your trip.
+* **Weather Monitoring:** 5-day forecasts with smart suggestions for bad weather days.
+* **Disruption Alerts:** Proactive notifications for closures, strikes, or travel disruptions.
+* **AI-Powered Suggestions:** Intelligent recommendations to enhance your itinerary.
+* **Full User Control:** Accept, reject, or modify all suggestions with clear reasoning.
+* **Event-Enhanced Days:** Visual indicators for days with special events.
+</details>
+
+<details>
 <summary><b>🤖 AI & Smart Planning</b> (Click to expand)</summary>
 
 * **AI Travel Planner:** Custom itineraries based on budget and interests.
