@@ -25,6 +25,7 @@ const DynamicTripPlanner = ({ tripData, onBack }) => {
     useEffect(() => {
         // Save the itinerary when component mounts
         saveItinerary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const saveItinerary = async () => {

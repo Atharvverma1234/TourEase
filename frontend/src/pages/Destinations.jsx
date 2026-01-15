@@ -11,14 +11,14 @@ export default function Destinations() {
 
   const navigate = useNavigate();
 
-  const filters = [
+  const filters = useMemo(() => [
     { label: "All Destinations", keywords: [] },
     { label: "Budget Friendly", keywords: ["budget"] },
     { label: "Luxury", keywords: ["luxury"] },
     { label: "Beach", keywords: ["beach"] },
     { label: "Mountains", keywords: ["mountain"] },
     { label: "Cultural", keywords: ["culture", "history", "art", "museum"] },
-  ];
+  ], []);
 
   const filtered = useMemo(() => {
     let result = destinations;
@@ -44,7 +44,7 @@ export default function Destinations() {
     }
 
     return result;
-  }, [activeFilter, searchQuery]);
+  }, [activeFilter, searchQuery, filters]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">

@@ -82,7 +82,7 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      const { confirmPassword, ...signupData } = formData;
+      const { confirmPassword: _confirmPassword, ...signupData } = formData;
       const response = await api.signup(signupData);
 
       if (response.success) {

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 
-export const FavoritesContext = createContext();
+const FavoritesContext = createContext();
+export { FavoritesContext };
 
 const FAVORITES_STORAGE_KEY = 'tourease_favorites';
 

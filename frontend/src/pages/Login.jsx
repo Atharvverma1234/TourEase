@@ -21,7 +21,7 @@ export default function Login() {
     if (token) {
       navigate("/home2", { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   const handleGoogleLogin = () => {
     window.location.href = `${API_BASE_URL}/auth/google`;

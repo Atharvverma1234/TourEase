@@ -14,7 +14,7 @@ export default function OAuthSuccess() {
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   return <p className="text-center mt-20">Seeing the world 🌍…</p>;
 }

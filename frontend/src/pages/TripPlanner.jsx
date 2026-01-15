@@ -64,7 +64,8 @@ function formatItinerary(plan) {
 }
 
 // Review Item Component
-function ReviewItem({ icon: Icon, label, value }) {
+function ReviewItem({ icon, label, value }) {
+  const Icon = icon;
   return (
     <div className="flex items-start space-x-3">
       <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -205,7 +206,9 @@ export default function TripPlanner() {
     try {
       const errorData = await response.json();
       errorMessage = errorData.error || errorMessage;
-    } catch (_) {}
+    } catch {
+      // Ignore JSON parse errors
+    }
     throw new Error(errorMessage);
   }
 

@@ -127,7 +127,8 @@ export default function DestinationDetails() {
   );
 }
 
-function InfoChip({ icon: Icon, label }) {
+function InfoChip({ icon, label }) {
+  const Icon = icon;
   return (
     <div className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3">
       <Icon className="w-5 h-5 text-teal-600 dark:text-teal-400" />
