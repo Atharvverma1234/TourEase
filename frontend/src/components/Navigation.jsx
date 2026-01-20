@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Heart, Sun, Moon } from "lucide-react";
 import { useFavorites } from "../hooks/useFavorites";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const { theme, toggleTheme } = useTheme();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,31 +35,6 @@ export default function Navigation() {
     navigate("/login", { replace: true });
   };
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
-
-  const applyTheme = (mode) => {
-    if (mode === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", mode);
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    applyTheme(newTheme);
-  };
 
   return (
     <>
@@ -137,22 +113,20 @@ export default function Navigation() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all ${
-                    isActive(item.path)
-                      ? "bg-teal-500 dark:bg-indigo-600 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-semibold transition-all ${isActive(item.path)
+                    ? "bg-teal-500 dark:bg-indigo-600 text-white"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
                 to="/favorites"
-                className={`relative px-4 pr-12 py-2 rounded-lg font-semibold flex items-center gap-2 transition ${
-                  isActive("/favorites")
-                    ? "bg-teal-500 dark:bg-indigo-600 text-white"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
+                className={`relative px-4 pr-12 py-2 rounded-lg font-semibold flex items-center gap-2 transition ${isActive("/favorites")
+                  ? "bg-teal-500 dark:bg-indigo-600 text-white"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
               >
                 <Heart className="w-5 h-5" />
                 Favorites
@@ -256,13 +230,12 @@ export default function Navigation() {
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-5 py-4 rounded-2xl font-semibold transition-all duration-200 ${
-                  isActive(item.path)
-                    ? "bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-indigo-500 dark:to-purple-600 text-white shadow-lg"
-                    : "text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                }`}
+                className={`block px-5 py-4 rounded-2xl font-semibold transition-all duration-200 ${isActive(item.path)
+                  ? "bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-indigo-500 dark:to-purple-600 text-white shadow-lg"
+                  : "text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                  }`}
                 style={{
-                  animation: isOpen 
+                  animation: isOpen
                     ? `slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${0.05 * (index + 1)}s backwards`
                     : "none"
                 }}
@@ -275,13 +248,12 @@ export default function Navigation() {
             <Link
               to="/favorites"
               onClick={() => setIsOpen(false)}
-              className={`relative px-5 py-4 rounded-2xl font-semibold flex items-center gap-3 transition-all duration-200 ${
-                isActive("/favorites")
-                  ? "bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-indigo-500 dark:to-purple-600 text-white shadow-lg"
-                  : "text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700/50"
-              }`}
+              className={`relative px-5 py-4 rounded-2xl font-semibold flex items-center gap-3 transition-all duration-200 ${isActive("/favorites")
+                ? "bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-indigo-500 dark:to-purple-600 text-white shadow-lg"
+                : "text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                }`}
               style={{
-                animation: isOpen 
+                animation: isOpen
                   ? `slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards`
                   : "none"
               }}
@@ -297,10 +269,10 @@ export default function Navigation() {
           </div>
 
           {/* Fixed bottom CTA */}
-          <div 
+          <div
             className="pt-4 border-t border-gray-200 dark:border-gray-700"
             style={{
-              animation: isOpen 
+              animation: isOpen
                 ? `slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.35s backwards`
                 : "none"
             }}

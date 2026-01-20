@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import { FavoritesProvider } from "./context/FavoritesContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Home2 from "./pages/Home2";
@@ -95,10 +96,12 @@ export default function App() {
   }
 
   return (
-    <FavoritesProvider>
-      <Router>
-        <AppRoutes />
-      </Router>
-    </FavoritesProvider>
+    <ThemeProvider>
+      <FavoritesProvider>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </FavoritesProvider>
+    </ThemeProvider>
   );
 }
