@@ -36,7 +36,7 @@ export default function Contact() {
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const valid = emailRegex.test(email);
-        
+
         if (!valid) {
             setEmailError('Please enter a valid email address');
             setIsEmailValid(false);
@@ -49,7 +49,7 @@ export default function Contact() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        
+
         // Apply max length for message field
         if (name === 'message' && value.length > MESSAGE_MAX_LENGTH) {
             return;
@@ -69,7 +69,7 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Validate name
         const nameError = validateName(formData.name);
         if (nameError) {
@@ -140,13 +140,13 @@ export default function Contact() {
                     <div className="absolute top-0 -right-4 w-72 h-72 bg-cyan-300 dark:bg-indigo-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
                     <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
                 </div>
-                
+
                 {/* Geometric Pattern Overlay */}
-                <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
-                
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 dark:to-black/30"></div>
-                
+
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-white tracking-tight drop-shadow-lg">
                         Get in Touch
@@ -198,169 +198,166 @@ export default function Contact() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800">
-                        {/* Success Message */}
-                        {submitted && (
-                            <div className="mb-8 p-5 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-l-4 border-green-500 dark:border-green-400 text-green-800 dark:text-green-300 rounded-lg shadow-sm flex items-start gap-3">
-                                <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5 text-green-600 dark:text-green-400" />
-                                <div>
-                                    <p className="font-bold text-lg mb-1">Success!</p>
-                                    <p className="text-sm">Your message has been sent successfully. We'll get back to you soon.</p>
-                                </div>
+                    {/* Success Message */}
+                    {submitted && (
+                        <div className="mb-8 p-5 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-l-4 border-green-500 dark:border-green-400 text-green-800 dark:text-green-300 rounded-lg shadow-sm flex items-start gap-3">
+                            <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5 text-green-600 dark:text-green-400" />
+                            <div>
+                                <p className="font-bold text-lg mb-1">Success!</p>
+                                <p className="text-sm">Your message has been sent successfully. We'll get back to you soon.</p>
                             </div>
-                        )}
-
-                        {/* Error Message */}
-                        {error && (
-                            <div className="mb-8 p-5 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-950 dark:to-rose-950 border-l-4 border-red-500 dark:border-red-400 text-red-800 dark:text-red-300 rounded-lg shadow-sm flex items-start gap-3">
-                                <AlertCircle className="w-6 h-6 flex-shrink-0 mt-0.5 text-red-600 dark:text-red-400" />
-                                <div>
-                                    <p className="font-bold text-lg mb-1">Error</p>
-                                    <p className="text-sm">{error}</p>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Name Field */}
-                        <div className="mb-7">
-                            <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
-                                Full Name <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-4 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500"
-                                placeholder="John Doe"
-                                disabled={loading}
-                                required
-                                onKeyPress={(e) => {
-                                    // Prevent typing numbers
-                                    if (/\d/.test(e.key)) {
-                                        e.preventDefault();
-                                    }
-                                }}
-                            />
                         </div>
+                    )}
 
-                        {/* Email Field with Real-time Validation */}
-                        <div className="mb-7">
-                            <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
-                                Email Address <span className="text-red-500">*</span>
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className={`w-full px-5 py-4 pr-14 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
-                                        emailError
-                                            ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-950/20 focus:border-red-500 focus:ring-red-500/10'
-                                            : isEmailValid
+                    {/* Error Message */}
+                    {error && (
+                        <div className="mb-8 p-5 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-950 dark:to-rose-950 border-l-4 border-red-500 dark:border-red-400 text-red-800 dark:text-red-300 rounded-lg shadow-sm flex items-start gap-3">
+                            <AlertCircle className="w-6 h-6 flex-shrink-0 mt-0.5 text-red-600 dark:text-red-400" />
+                            <div>
+                                <p className="font-bold text-lg mb-1">Error</p>
+                                <p className="text-sm">{error}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Name Field */}
+                    <div className="mb-7">
+                        <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
+                            Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="w-full px-5 py-4 border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-4 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                            placeholder="John Doe"
+                            disabled={loading}
+                            required
+                            onKeyPress={(e) => {
+                                // Prevent typing numbers
+                                if (/\d/.test(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
+                        />
+                    </div>
+
+                    {/* Email Field with Real-time Validation */}
+                    <div className="mb-7">
+                        <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
+                            Email Address <span className="text-red-500">*</span>
+                        </label>
+                        <div className="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={`w-full px-5 py-4 pr-14 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 ${emailError
+                                        ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-950/20 focus:border-red-500 focus:ring-red-500/10'
+                                        : isEmailValid
                                             ? 'border-green-400 dark:border-green-600 bg-green-50 dark:bg-green-950/20 focus:border-green-500 focus:ring-green-500/10'
                                             : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10'
                                     } text-gray-900 dark:text-white`}
-                                    placeholder="john.doe@example.com"
-                                    disabled={loading}
-                                    required
-                                />
-                                {formData.email && (
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                        {isEmailValid ? (
-                                            <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-500" />
-                                        ) : emailError ? (
-                                            <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-500" />
-                                        ) : null}
-                                    </div>
-                                )}
-                            </div>
-                            {emailError && (
-                                <p className="mt-2.5 text-sm font-medium text-red-700 dark:text-red-400 flex items-center gap-2">
-                                    <AlertCircle className="w-4 h-4" />
-                                    {emailError}
-                                </p>
-                            )}
-                            {isEmailValid && (
-                                <p className="mt-2.5 text-sm font-medium text-green-700 dark:text-green-400 flex items-center gap-2">
-                                    <CheckCircle2 className="w-4 h-4" />
-                                    Email looks good!
-                                </p>
-                            )}
-                        </div>
-
-                        {/* Subject Field (Optional) */}
-                        <div className="mb-7">
-                            <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
-                                Subject <span className="text-gray-500 dark:text-gray-400 text-xs font-semibold ml-1">(Optional)</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="subject"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-4 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500"
-                                placeholder="How can we help you today?"
-                                disabled={loading}
-                            />
-                        </div>
-
-                        {/* Message Field with Character Counter */}
-                        <div className="mb-8">
-                            <div className="flex items-center justify-between mb-3">
-                                <label className="block text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide">
-                                    Message <span className="text-red-500">*</span>
-                                </label>
-                                <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-                                    isNearLimit 
-                                        ? 'text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-950' 
-                                        : 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800'
-                                }`}>
-                                    {messageCharCount} / {MESSAGE_MAX_LENGTH}
-                                </span>
-                            </div>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows="7"
-                                className={`w-full px-5 py-4 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all duration-200 resize-none placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
-                                    isNearLimit
-                                        ? 'border-orange-300 dark:border-orange-700 focus:border-orange-500 focus:ring-orange-500/10 bg-orange-50/50 dark:bg-orange-950/10'
-                                        : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10'
-                                } text-gray-900 dark:text-white`}
-                                placeholder="Tell us more about your inquiry... What can we help you with?"
+                                placeholder="john.doe@example.com"
                                 disabled={loading}
                                 required
                             />
-                            {isNearLimit && (
-                                <p className="mt-2.5 text-xs font-semibold text-orange-600 dark:text-orange-400 flex items-center gap-1">
-                                    <AlertCircle className="w-3.5 h-3.5" />
-                                    You're approaching the character limit
-                                </p>
+                            {formData.email && (
+                                <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                                    {isEmailValid ? (
+                                        <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-500" />
+                                    ) : emailError ? (
+                                        <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-500" />
+                                    ) : null}
+                                </div>
                             )}
                         </div>
+                        {emailError && (
+                            <p className="mt-2.5 text-sm font-medium text-red-700 dark:text-red-400 flex items-center gap-2">
+                                <AlertCircle className="w-4 h-4" />
+                                {emailError}
+                            </p>
+                        )}
+                        {isEmailValid && (
+                            <p className="mt-2.5 text-sm font-medium text-green-700 dark:text-green-400 flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4" />
+                                Email looks good!
+                            </p>
+                        )}
+                    </div>
 
-                        {/* Submit Button with Loading State */}
-                        <button
-                            type="submit"
-                            disabled={loading || (formData.email && !isEmailValid)}
-                            className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 dark:from-indigo-600 dark:to-indigo-700 dark:hover:from-indigo-500 dark:hover:to-indigo-600 disabled:from-gray-300 disabled:to-gray-400 dark:disabled:from-gray-700 dark:disabled:to-gray-800 disabled:cursor-not-allowed text-white font-bold text-lg py-5 rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-60"
-                        >
-                            {loading ? (
-                                <>
-                                    <Loader className="w-6 h-6 animate-spin" />
-                                    <span>Sending Message...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Send className="w-6 h-6" />
-                                    <span>Send Message</span>
-                                </>
-                            )}
-                        </button>
-                    </form>
-                </div>
+                    {/* Subject Field (Optional) */}
+                    <div className="mb-7">
+                        <label className="block text-sm font-bold mb-3 text-gray-800 dark:text-gray-200 uppercase tracking-wide">
+                            Subject <span className="text-gray-500 dark:text-gray-400 text-xs font-semibold ml-1">(Optional)</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleChange}
+                            className="w-full px-5 py-4 border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-4 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10 transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                            placeholder="How can we help you today?"
+                            disabled={loading}
+                        />
+                    </div>
+
+                    {/* Message Field with Character Counter */}
+                    <div className="mb-8">
+                        <div className="flex items-center justify-between mb-3">
+                            <label className="block text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide">
+                                Message <span className="text-red-500">*</span>
+                            </label>
+                            <span className={`text-xs font-bold px-3 py-1 rounded-full ${isNearLimit
+                                    ? 'text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-950'
+                                    : 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800'
+                                }`}>
+                                {messageCharCount} / {MESSAGE_MAX_LENGTH}
+                            </span>
+                        </div>
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            rows="7"
+                            className={`w-full px-5 py-4 border-2 rounded-xl focus:outline-none focus:ring-4 transition-all duration-200 resize-none placeholder:text-gray-400 dark:placeholder:text-gray-500 ${isNearLimit
+                                    ? 'border-orange-300 dark:border-orange-700 focus:border-orange-500 focus:ring-orange-500/10 bg-orange-50/50 dark:bg-orange-950/10'
+                                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:border-teal-500 dark:focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-750 focus:ring-teal-500/10 dark:focus:ring-indigo-400/10'
+                                } text-gray-900 dark:text-white`}
+                            placeholder="Tell us more about your inquiry... What can we help you with?"
+                            disabled={loading}
+                            required
+                        />
+                        {isNearLimit && (
+                            <p className="mt-2.5 text-xs font-semibold text-orange-600 dark:text-orange-400 flex items-center gap-1">
+                                <AlertCircle className="w-3.5 h-3.5" />
+                                You're approaching the character limit
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Submit Button with Loading State */}
+                    <button
+                        type="submit"
+                        disabled={loading || (formData.email && !isEmailValid)}
+                        className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 dark:from-indigo-600 dark:to-indigo-700 dark:hover:from-indigo-500 dark:hover:to-indigo-600 disabled:from-gray-300 disabled:to-gray-400 dark:disabled:from-gray-700 dark:disabled:to-gray-800 disabled:cursor-not-allowed text-white font-bold text-lg py-5 rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-60"
+                    >
+                        {loading ? (
+                            <>
+                                <Loader className="w-6 h-6 animate-spin" />
+                                <span>Sending Message...</span>
+                            </>
+                        ) : (
+                            <>
+                                <Send className="w-6 h-6" />
+                                <span>Send Message</span>
+                            </>
+                        )}
+                    </button>
+                </form>
+            </div>
 
             {/* FAQ Section - Centered & Balanced */}
             <div className="relative bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 py-20 overflow-hidden">
@@ -370,10 +367,10 @@ export default function Contact() {
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-200 dark:bg-indigo-950 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
                     <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-200 dark:bg-purple-950 rounded-full filter blur-3xl opacity-10 -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
-                
+
                 {/* Subtle Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)', backgroundSize: '50px 50px'}}></div>
-                
+                <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
+
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-14">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
@@ -384,7 +381,7 @@ export default function Contact() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
                         <FAQItem
                             question="How quickly will you respond?"
                             answer="We aim to respond to all inquiries within 24 hours during business days. For urgent matters, our 24/7 support team is available."
@@ -416,13 +413,13 @@ export default function Contact() {
                     <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-cyan-300 dark:bg-indigo-500 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
                     <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-blue-300 dark:bg-pink-500 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
                 </div>
-                
+
                 {/* Radial Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/10 dark:to-black/20"></div>
-                
+
                 {/* Dot Pattern */}
-                <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
-                
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 text-white tracking-tight drop-shadow-lg">
                         Still have questions?
@@ -469,12 +466,11 @@ function FAQItem({ question, answer }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div 
-            className={`bg-white dark:bg-gray-900 p-7 rounded-2xl shadow-md border transition-all duration-300 ${
-                isOpen 
-                    ? 'border-teal-300 dark:border-indigo-700 shadow-xl ring-4 ring-teal-100 dark:ring-indigo-900/50' 
+        <div
+            className={`bg-white dark:bg-gray-900 p-7 rounded-2xl shadow-md border transition-all duration-300 ${isOpen
+                    ? 'border-teal-300 dark:border-indigo-700 shadow-xl ring-4 ring-teal-100 dark:ring-indigo-900/50'
                     : 'border-gray-200 dark:border-gray-800 hover:border-teal-200 dark:hover:border-indigo-800 hover:shadow-lg'
-            }`}
+                }`}
         >
             <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -485,18 +481,16 @@ function FAQItem({ question, answer }) {
                     {question}
                 </span>
                 <div className="flex-shrink-0 bg-teal-100 dark:bg-indigo-950 p-2 rounded-lg group-hover:bg-teal-200 dark:group-hover:bg-indigo-900 transition-colors">
-                    <ChevronDown 
-                        className={`w-5 h-5 text-teal-600 dark:text-indigo-400 transition-transform duration-300 ${
-                            isOpen ? 'rotate-180' : ''
-                        }`}
+                    <ChevronDown
+                        className={`w-5 h-5 text-teal-600 dark:text-indigo-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                            }`}
                     />
                 </div>
             </button>
-            
-            <div 
-                className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                }`}
+
+            <div
+                className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
             >
                 <div className="overflow-hidden">
                     <p className="text-gray-700 dark:text-gray-300 pt-5 leading-relaxed text-base border-t border-gray-100 dark:border-gray-800 mt-5">

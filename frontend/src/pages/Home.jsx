@@ -1,4 +1,5 @@
 import React from "react";
+import Testimonials from "../pages/Testimonials";
 import { Link } from "react-router-dom";
 import {
   Globe,
@@ -301,7 +302,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <Testimonials />
       {/* ================= CTA SECTION ================= */}
       <div className="bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-600 text-white py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
